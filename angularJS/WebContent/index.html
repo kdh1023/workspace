@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <script src="/resources/js/angular/angular.min.js"></script> -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script type="text/javascript">
+var myApp = angular.module('myApp', []);
+
+//myApp.controller('MainCtrl', ['$scope', function($scope){
+myApp.controller('MainCtrl', function($scope){
+	$scope.text = "Hello, Angular fanatic.";
+});
+</script>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<div  ng-app="myApp">
+		<div ng-controller="MainCtrl">
+			{{ text }}
+		</div>
+	</div>
+</body>
+</html>
