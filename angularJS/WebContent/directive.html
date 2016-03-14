@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script type="text/javascript">
+var myApp = angular.module('myApp', []);
+
+// 디렉티브 이름에 대문자를 사용하면 DOM에서는 하이픈으로 이를 구분하여 사용
+myApp.directive('customButton', function(){
+	return{
+		restrict: 'A',
+		replace: true,
+		transclude: true,
+		template: '<a href="" class="myawesomebutton" ng-transclude>' +
+					'<i class="icon-ok-sign"></i>' +
+					'</a>',
+		//templateUrl: 'templates/customButton.html',
+		link: function(scope, elememt, attrs){
+			// DOM 조작과 이벤트 설정은 여기서
+		}
+	};
+});
+</script>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<div ng-app="myApp">
+		<a custom-button>Click me</a>
+	</div>
+</body>
+</html>
