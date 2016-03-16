@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script type="text/javascript">
+var myApp = angular.module('myApp', []);
+
+myApp.factory('Server', function($http) {
+	return {
+		get : function(url) {
+			return $http.get(url);
+		},
+		post : function(url) {
+			return $http.post(url);
+		}
+	}
+});
+
+myApp.controller('MainCtrl', function($scope, Server) {
+	var jsonGet = 'http://myserver/getUrl';
+	var jsonPost = 'http://myserver/postUrl';
+	Server.get(jsonGet);
+	Server.post(jsonPost);
+});
+</script>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
