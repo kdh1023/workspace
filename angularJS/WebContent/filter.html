@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script type="text/javascript">
+var myApp = angular.module('myApp', []);
+
+myApp.filter('reverse', function(){
+	return function(input, uppercase) {
+		var out = '';
+		for(var i=0; i<input.length; i++) {
+			out = input.charAt(i) + out;
+		}
+		if(uppercase) {
+			out = out.toUpperCase();
+		}
+		return out;
+	}
+});
+
+myApp.controller('MainCtrl', function($scope){
+	$scope.greeting = 'Todd Motoo';
+});
+</script>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<div ng-app="myApp">
+		<div ng-controller="MainCtrl">
+			<p>No filter : {{ greeting }} </p>
+			<p>Reverse : {{ greeting | reverse }} </p>
+		</div>
+	</div>
+	
+</body>
+</html>
