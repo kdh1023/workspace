@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="resources/js/angular/angular.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script> -->
+<script type="text/javascript">
+var myApp = angular.module('myApp', []);
+
+myApp.controller('MainCtrl', function($scope){
+	// 빈 문자열로 초기화하고 모델 데이터를 읽어온다.
+	$scope.myModel = '';
+});
+</script>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div ng-app="myApp">
+		<div ng-controller="MainCtrl">
+			<input type="text" ng-model="myModel" placeholder="Start typing..." />
+			<p>My model data : {{ myModel }}</p>
+		</div>
+	</div>
+</body>
+</html>
