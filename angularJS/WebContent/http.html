@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="resources/js/angular/angular.min.js"></script>
+<script type="text/javascript">
+var myApp = angular.module('myApp', []);
+
+myApp.controller('UserCtrl', function($scope, $http){
+	// 사용자 객체를 생성
+	$scope.user = {};
+	
+	// 빈 문자열로 초기화
+	$scope.user.username = '';
+	
+	// 서버에 사용자 이름을 요청
+	$http({
+		method : 'GET',
+		url : '//localhost:8888/someUrlForGettingUsername'
+	})
+	.success(function(data, status, headers, config) {
+		// 서버로부터 받아온 사용자 이름을 모델에 할당
+		$scope.user.username = data.user.name;
+	})
+	.error(function(data, status, headers, config) {
+		// error
+	});
+});
+</script>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<div ng-app="myApp">
+		<div ng-controller="UserCtrl">
+			<p>{{ user.username }}</p>
+		</div>
+	</div>
+</body>
+</html>
