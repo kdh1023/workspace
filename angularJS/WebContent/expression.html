@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="resources/js/angular/angular.min.js"></script>
+<script type="text/javascript">
+var myApp = angular.module('myApp', []);
+
+myApp.controller('MainCtrl', function($scope) {
+	$scope.main = {};
+	
+	// No data
+	$scope.main.test1 = [];
+	
+	$scope.main.test2 = [{
+		"some" : "data"
+	}];
+});
+</script>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div ng-app="myApp">
+	<div ng-controller="MainCtrl">
+		<p>Test 1 : {{ main.test1.length > 0 && 'My data' || 'No data' }}</p>
+		<p>Test 2 : {{ main.test2.length > 0 && 'My data' || 'No data' }}</p>
+	</div>
+</div>
+</body>
+</html>
