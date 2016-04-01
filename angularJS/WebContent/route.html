@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="resources/js/angular/angular.min.js"></script>
+<script type="text/javascript">
+var myApp = angular.module('myApp', []);
+
+myApp.controller('MainCtrl', function($scope) {
+	myApp.config(['$routeProvider', function($routeProvider) {
+		$routeProvider
+		.when('/', {
+			templateUrl: "views/main.html"
+		})
+		.when('/emails', {
+			templateUrl: "views/emails.html"
+		})
+		.otherwise({
+			redirectTo: '/'
+		});
+	}]);
+});
+</script>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
