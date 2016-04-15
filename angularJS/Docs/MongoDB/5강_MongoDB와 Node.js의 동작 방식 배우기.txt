@@ -1,0 +1,70 @@
+MongoDB 기본 동작 원리
+  * MongoDB 구성
+    - MongoDB는 수평적 확장이라는 특징을 가짐
+    - 한 대 이상의 서버로 구성하는 것이 일반적
+    - MonghoDB는 메모리 사용 가능량에 대비하여 성능이 좌우되기 때문에 독립된 서버에서 실행을 권장
+    - 기본적으로 MongoDB는 mongod라는 실행파일을 단위로 실행
+    - 데이터를 한곳에만 저장하면 데이터 손상 시 복구가 불가능하기 때문에 보통 3개의 Replica 단위로 구성하여 데이터를 복제
+    - mongos 서버를 통해 마치 한대의 데이터베이스 서버처럼 사용 가능
+    
+    - MongoDB의 철학 : 메모리 관리는 운영체제에 맡기자
+      a. 상대적으로 메모리 관리에 뛰어난 unix 베이스의 운영체제를 선택
+  
+  * MongoDB 설치
+    - MongoDB 공식 사이트(mongodb.org) 접속하여 운영체제에 맞는 배포판 다운로드
+    - 압축해제 또는 설치프로그램(msi) 다운로드 및 실행
+  
+  * MongoDB 실행
+    - MongoDB 설치 폴더로 이동
+      cd c:\MongoDB\bin
+    - MongoDB 데이터 저장 폴더 생성
+      mkdir c:\MongoDB\var
+    - MongoDB 실행
+      mongod -dbpath c:\MongoDB\var
+    - MongoDB 실행
+      mongo
+    - MongoDB 실행(서비스)
+      mongod -config c:\MongoDB\mongodb.conf -install
+        **********    c:\mongodb\mongodb.conf  *****************
+		      	dbpath = c:\var\data\
+				logpath = c:\var\log\logs.log
+				logappend = true
+				rest = true
+				directoryperdb = true
+		**********    c:\mongodb\mongodb.conf  *****************
+    - MongoDB 안전 종료(clean exit)
+      use admin;
+      db.shutdownServer();
+      
+  * Node.js 기본 개념
+    - MongoDB는 다양한 언어를 통해 사용 가능
+    - Node.js : 네트워크 프로그래밍을 위한 자바스크립트 플랫폼
+    - Node.js 내부는 표준 자바스크립트를 실행하기 위한 V8엔진을 기반으로 동작(일종의 자바스크립트 개발환경)
+    - 손쉽고 간단하게 HTTP 처리와 URL 처리 가능
+    - MongoDB 데이터 입출력 시 사용되는 JSON 처리 용이
+    - Node.js와 MongoDB는 찰떡궁합
+    - 구글 크롬웹브라우저에서 사용하는 자바스크립트엔진(V8)을 사용하여 애플리케이션을 구축할 수 있게 해주는 프레임워크
+    - 자바스크립트를 이용하기 때문에 다른 언어에 비해 쉽고 간편하게 애플리케이션을 만드는 것이 가능
+    - V8이라는 크롬에서 사용하는 자바스크립트 엔진을 사용하기 때문에 스크립트 언어의 단점인 느린속도 개선
+    - event-driven, non-blocking I/O 등의 개발 방식을 사용하여 네트워크 프로그래밍에 유리
+    
+  * event-driven
+    - 사용자 또는 외부 환경이 만들어낸 사건(이벤트)를 기반으로 어떤 처리를 할지 지정해주는 개발 방식
+    - 예를들어 사용자가 마우스를 움직였다거나 키보드를 입력했다거나 새로운 데이터가 들어왔다거나 이 모든 것을 사건(이벤트)로 처리
+    - 일부 웹서버는 데이터가 들어올때까지 무한정 기다리는 문제 있음
+    - 특정 이벤트에 대한 처리만하여 웹서버와 연결시키면 되기 때문에 자원을 최소화 가능
+  
+  * Non-blocking
+    a. Blocking I/O(동기식 input/output) :
+      - 쓰기/읽기 이벤트가 발생할 경우 해당 이벤트가 끝날때까지 해당 모듈을 계속 점유
+      - 다른 일을 할 수 없는 상태가 됨
+      - 메모리를 계속 차지하고 있기 때문에 자원의 낭비 심함
+    b. Non-blocking I/O(비동기식 I/O) :
+      - 쓰기/읽기 이벤트가 시작되어도 모듈을 반환
+      - 다른 작업이 가능한 준비 상태로 전환
+      - 동기식보다 빠르고 메모리도 적게 차지
+  
+  * Node.js 설치
+    - Node.js 공식 사이트(nodejs.org) 접속하여 다운로드 및 설치
+    - eclipse 공식 사이트(eclipse.org) 접속하여 다운로드 및 설치
+    - Eclipse Marketplace 메뉴에서 Nodeclipse 설치
