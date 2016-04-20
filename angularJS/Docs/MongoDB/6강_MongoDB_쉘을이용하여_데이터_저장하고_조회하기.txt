@@ -1,0 +1,56 @@
+MongoDB 실행
+  * MongoDB 조회
+    - MongoDB 데이터베이스 조회
+      > show dbs;
+      > use test;
+    - MongoDB 컬랙션(테이블) 조회
+      > show collections;
+  
+  * Javascript 명령
+    - 변수 생성 및 사칙 연산
+      > a=5;
+      > a * 10;
+    - 반복문 사용
+      > for(i=0; i<10; i++) { print('hello'); };
+    - JSON 형태의 데이터 저장
+      > var a = { age:25};
+      > var n = { name:'ED', languages:['c', 'ruby', 'js'] };
+    
+  * MongoDB 저장
+    - Save 명령
+      > db.scores.save({a:99});
+      > db.scores.find();
+      
+      > for(i=0; i<10; i++) { db.scores.save({a:i, exam:5}); };
+      > db.scores.find();
+      
+  * MongoDB 조회
+    - find 명령
+      > db.scores.find({a:2});
+      > db.scores.find({ a: {'$gt':15} });
+    - find 명령(AND 연산)
+      > db.scores.find({ a: {'$gte':2, '$lte':4} });
+      
+      비교 연산자 $gt : '>', $lt : '<', $gte : '>=', $lte : '<=', $ne : '!='
+      
+      > db.scores.find({a: {'$in': [2,3,4]} });
+      > db.scores.find({a: {'$nin': [2,3,4]} });
+      
+      비교 연산자 $in - 'is in array', $nin - '! in array'
+    - find 명령(OR 연산)
+      > db.scores.find({ $or:[{'a': {$lt:1}}, {'a': {$gt:9}}] });
+    - find 명령(필드 존재 유무)
+      > db.scores.find({ exam:{$exists:true} });
+    - find 명령(반환 필드 선택)
+      > db.scores.find({}, {a:1, exam:1, _id:0});
+      
+  * 정리
+    - MongoDB 실행
+      a. MongoDB는 RDBMS 처럼 데이터베이스 및 컬랙션(테이블) 조작 명령을 가지고 있고, 
+      MongoDB Shell에서 Javascript 프로그래밍이 가능함
+      
+    - MongoDB 데이터 저장
+      a. MongoDB에는 테이블(스키마)을 먼저 만들지 않고, 곧바로 데이터를 JSON 형태로 저장함
+      
+    - MongoDB 데이터 조회
+      a. 다양한 조건에 맞는 데이터를 검색할 수 있는 쿼리 명령어 지원
