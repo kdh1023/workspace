@@ -1,0 +1,45 @@
+MongoDB 데이터 수정
+  * MongoDB 수정
+    - Update용 데이터 입력
+      > db.users.save({name:'Johnny', languages: ['ruby', 'c']});
+      > db.users.save({name:'Sue', languages: ['scala', 'lisp']});
+      
+    - Update 명령(도큐먼트 전체 내용 변경)
+      > db.users.update({name: 'Johnny'}, {name: 'Cash', languages: ['english']});
+      
+    - Update 명령(필드 내용 변경/추가)
+      > db.users.update({name: 'Cash'}, {'$set': {'age': 50}});
+    
+    - Update 명령(필드 내용 삭제)
+      > db.users.update({name: 'Cash'}, {'$unset': {'age': 50}});
+      
+    - Update 명령(배열 값 삭제)
+      > db.users.update({name:'Sue'}, {'$pull': {'languages': 'scala'}});
+      
+    - Update 명령(배열 값 추가)
+      > db.users.update({name: 'Sue'}, {'$push': {'languages' : 'ruby'}});
+      
+  * MongoDB 삭제
+    - remove 명령
+      > db.users.remove({name: 'Sue'});
+      
+    - remove 명령( 전체 도큐먼트 삭제)
+      > db.users.remove({});
+      
+    - drop 명령(컬랙션 전체 삭제)
+      > db.useres.drop();
+      
+  * CRUD 명령
+    - Create
+      > db.person.save({'name':'john'});
+    - Read
+      > db.person.find();
+    - Update
+      > db.users.update({name:'Johnny'}, {name:'Cash', languages:['english']});
+    - Delete
+      > db.users.remove({name: 'Sue'});
+  
+  * CRUD 응용 문제
+    - find시 결과 필드로 name 필드만 출력 ( 조회조건 : 6<=pos<=27 or 77<pos<=90)
+      > for(i=0; i<100; i++) { db.users.save({name:"name"+i, pos:i}); }
+      > db.users.find({'$or': [{'pos':{'$gte':6, '$lte':27}}, {'pos': {'$gt' : 77, '$lte':90}}]}, {'pos':0});
