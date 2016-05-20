@@ -1,0 +1,19 @@
+// 스크롤 위치 체크해서 탭 top에 고정
+
+$(function(){
+	var defaultTop=$(".goods-detail-tab").position().top;
+	
+	$(window).on("scroll", function(){
+		var scv = $(window).scrollTop();
+		
+		if( scv >= defaultTop ) {
+			$(".goods-detail-tab").css({'position' : 'fixed', 'top':0 });
+		} else {
+			$(".goods-detail-tab").css({'position' : 'relative'});
+		}
+	});
+});
+
+// 화면 맨 위로
+var pos=$("divb").position().top;
+$("html, body").animate({scrollTop:pos, 'slow'});
